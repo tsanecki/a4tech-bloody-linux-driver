@@ -11,7 +11,7 @@ using std::cout; using std::endl;
 void Mouse::init() {
     int ret = libusb_init(&context);
     if (ret < 0) {
-        cout<<"Init Error "<<ret<<endl;
+        cout << "Init Error " << ret << endl;
         return;
     }
 
@@ -25,7 +25,7 @@ void Mouse::discoverDevices() {
     libusb_device** devs;
     ssize_t cnt = libusb_get_device_list(context, &devs);
     if (cnt < 0) {
-        cout<<"Get Device Error"<<endl;
+        cout << "Get Device Error" << endl;
         return;
     }
 
@@ -93,7 +93,7 @@ int Mouse::writeToMouse(uint8_t data[], size_t size) {
     int res =  libusb_control_transfer(currentDevice,0x21,9,
                                        0x0307,2,data,size,10000);
     if (res < 0){
-        cout<<"Unnable to send command"<<endl;
+        cout << "Unnable to send command" << endl;
         return -1;
     }
 
@@ -173,7 +173,7 @@ void Mouse::listDevices() {
                 name = "Unknown";
         }
 
-        std::cout<< devHand.first<<":"<<name<<endl;
+        std::cout << devHand.first << ":" << name << endl;
     }
 
 }
